@@ -1,0 +1,19 @@
+.home-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.main-content {
+    display: flex;
+    flex: 1;
+}
+
+.content-area {
+    flex: 1;
+    padding: 20px;
+    background-color: var(--background-color);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); 
+    border-radius: 8px; 
+    transition: background-color 0.3s ease;
+}

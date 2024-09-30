@@ -1,0 +1,78 @@
+:root {
+    /* Light Theme */
+    --primary-color: #2f27ce;
+    --secondary-color: #dedcff;
+    --accent-color: #433bff;
+    --text-color:#050315;
+    --background-color: #fbfbfe;
+}
+
+[data-theme="dark"] {
+    /* Dark Theme */
+    --primary-color: #3a31d8;
+    --secondary-color: #020024;
+    --accent-color: #0600c2;
+    --text-color: #ebe9fc;
+    --background-color: #010104;
+}
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--primary-color);
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+button {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Card Component */
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 10px 0;
+    transition: background-color 0.3s ease;
+}
+
+[data-theme="dark"] .card {
+    background-color: #1a1a1a;
+}
+
+/* Example Media Queries */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
+    button {
+        width: 100%;
+    }
+}

@@ -1,0 +1,75 @@
+.aside-bar {
+    width: 250px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding: 20px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.3s ease;
+}
+
+.aside-top {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+}
+.aside-top li {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.1s ease, color 0.3s ease;
+    border-radius: 5px;
+}
+
+.aside-top li:hover {
+    transform: translateY(2px);
+    color: var(--accent-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.aside-top li svg {
+    margin-right: 10px;
+    transition: transform 0.2s ease;
+}
+
+.aside-top li:hover svg {
+    transform: scale(1.1);
+}
+
+.aside-bottom {
+    list-style: none;
+    padding: 0;
+    margin-top: auto;
+}
+
+.aside-bottom li {
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.aside-bottom li:hover {
+    color: var(--accent-color);
+}
+
+.aside-bottom li svg {
+    margin-right: 10px;
+    transition: transform 0.2s ease;
+}
+
+.aside-bottom li:hover svg {
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .aside-bar {
+        width: 200px;
+    }
+}

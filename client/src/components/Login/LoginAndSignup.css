@@ -1,0 +1,109 @@
+/* Common Styles for Login and Signup */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    background-color: var(--background-color);
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 400px; /* Fixed width for the card */
+    margin: 20px;
+}
+
+/* Left Section Styles */
+.card-left {
+    padding: 20px;
+    background-color: var(--primary-color);
+    color: var(--text-color); /* Text color for better visibility */
+    text-align: center;
+    width: 400px; /* Same width as right card */
+}
+
+.card-left .logo {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.card-left .welcome-text {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+/* Right Section Styles */
+.card-right {
+    padding: 20px;
+    width: 400px; /* Same width as left card */
+}
+
+.card-right form {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-right label {
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+.card-right input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid var(--primary-color);
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.card-right input:focus {
+    border-color: var(--accent-color);
+    outline: none; /* Remove default outline */
+}
+
+.card-right button {
+    padding: 10px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.card-right button:hover {
+    background-color: var(--secondary-color);
+}
+
+.card-right div {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.card-right h3 {
+    margin: 10px 0;
+}
+
+.card-right a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.card-right a:hover {
+    text-decoration: underline;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .card {
+        width: 90%; /* Responsive width */
+    }
+}
