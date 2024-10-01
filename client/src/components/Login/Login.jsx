@@ -1,14 +1,28 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './LoginAndSignup.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { UserContext } from '../../contexts/UserContext';
+import { login } from '../../services/loginServices';
 
 function Login() {
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const { username, email, setUsername, setEmail, setLoggedIn } = useContext(UserContext);
+    const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        try {
+            const res = await login({ username, email, password });
+            alert(res.data.msg);
+            if (res.status == 200) {
+                setLoggedIn(true);
+                // Navigate to the Home page 
+                navigate('/');
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (

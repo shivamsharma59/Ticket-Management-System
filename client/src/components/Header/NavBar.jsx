@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PersonIcon from '@mui/icons-material/Person';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../../contexts/UserContext';
 import './NavBar.css';
 
+
 function NavBar() {
+    const { username, email, loggedIn } = useContext(UserContext)
     return (
         <div>
             <div className="navbar">
@@ -16,10 +19,13 @@ function NavBar() {
                     </li>
                 </ul>
                 <ul className="nav-right-part">
-                    <li className="list-items">
-                        <Link to='/Login' className='nav-links'>Login/Signup</Link>
-                    </li>
-                    <li className='list-items'> <PersonIcon /> Username</li>
+                    {!loggedIn ? (
+                        <li className="list-items">
+                            <Link to='/Login' className='nav-links'>Login/Signup</Link>
+                        </li>
+                    ) : (
+                        <li className='list-items'> <PersonIcon /> {username}</li>
+                    )}
                 </ul>
             </div>
         </div>
