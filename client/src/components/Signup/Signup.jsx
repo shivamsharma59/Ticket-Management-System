@@ -1,22 +1,27 @@
 import React, { useState } from 'react';
 import '../Login/LoginAndSignup.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { signup } from '../../services/signupServices';
 
 function Signup() {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate(); // Initialize useNavigate
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const data = await signup({ username, email, password });
-            alert(data.msg);
+            const res = await signup({ username, email, password });
+            alert(res.data.msg);
+            if (res.status == 200) {
+                // Navigate to the Verify OTP page after successful signup
+                navigate('/verify-otp', { state: { email } }); // Pass the email for OTP verification
+            }
         } catch (error) {
             console.error(error);
+            alert("An error occurred. Please try again.");
         }
-
     }
 
     return (

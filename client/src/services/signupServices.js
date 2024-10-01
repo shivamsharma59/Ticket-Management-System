@@ -3,7 +3,7 @@ const URL = import.meta.env.VITE_URL
 const signup = async ({ username, email, password }) => {
     try {
         const res = await axios.post(`${URL}/auth/signup`, { username, email, password });
-        return res.data;
+        return res;
     } catch (error) {
         console.error(error);
     }

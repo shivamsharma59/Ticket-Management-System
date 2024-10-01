@@ -38,7 +38,7 @@ const userSchema = new mongoose.Schema({
     otp: {
         type: String
     },
-    otpExprires: {
+    otpExpires: {
         type: Date
     }
 }, { timestamps: true });

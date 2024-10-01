@@ -7,6 +7,7 @@ import DepartmentForm from './components/Department/DepartmentForm';
 import DepartmentTicketList from './components/Ticket/DepartmentTicketList';
 import { DepartmentProvider } from './contexts/Department.context';
 import { TicketContextProvider } from './contexts/Ticket.context';
+import VerifyOtpPage from './pages/verifyOtp/verifyOtp.page';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
                 </Route>
                 <Route path='/login' element={<LoginPage />} />
                 <Route path='/signup' element={<SignupPage />} />
+                <Route path='/verify-otp' element={<VerifyOtpPage />} />
               </Routes >
             </main>
           </Router>
