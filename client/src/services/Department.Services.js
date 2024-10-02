@@ -12,7 +12,7 @@ const getDepartments = async () => {
 
 const createDepartment = async ({ DName, description }) => {
     try {
-        await axios.post(`${URL}/department`, { DName, description });
+        await axios.post(`${URL}/department`, { DName, description }, { withCredentials: true });
     } catch (error) {
         throw new Error('Error creating department: ' + error.message);
     }

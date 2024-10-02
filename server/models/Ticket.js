@@ -5,6 +5,10 @@ const ticketSchema = new mongoose.Schema({
         type : mongoose.Schema.Types.ObjectId,
         ref : 'User'
     },
+    department : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : 'Department'
+    },
     title: {
         type: String,
         require: true,

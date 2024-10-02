@@ -32,7 +32,7 @@ function DepartmentList() {
                     {departments.map(department => (
                         <li className='department' key={department._id}>
                             <Link
-                                to={`/department/${department._id}/ticket`}
+                                to={`/department/ticket/${department._id}`}
                                 onClick={() => { setDepartmentId(department._id) }}
                             > {department.departmentName} </Link>
                         </li>

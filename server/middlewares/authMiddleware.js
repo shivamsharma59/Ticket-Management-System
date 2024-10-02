@@ -1,5 +1,7 @@
-const auth = (req, res) => {
+const jwt = require('jsonwebtoken');
+const auth = (req, res, next) => {
     // if not token
+    console.log(req.headers.authorization);
     if (!req.headers.authorization) {
         return res.status(401).json({ msg: "Unauthorized" });
     }
@@ -11,5 +13,8 @@ const auth = (req, res) => {
     // if token is valid
     const user = jwt.verify(token, process.env.JWT_SECRET);
     req.user = user;
-    return res.status(200).json({ msg: "Authorized" });
+    console.log(user);
+    next();
 }
+
+module.exports = auth;

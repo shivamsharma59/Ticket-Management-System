@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const logout = async () => {
     try {
-        const res = await axios.get(`${URL}/auth/logout`);
+        const res = await axios.get(`${URL}/auth/logout`, { withCredentials: true });
         return res;
     } catch (error) {
         console.error(error);

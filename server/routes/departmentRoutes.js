@@ -4,7 +4,7 @@ const Department = require('../models/Department.js');
 const ticketRoutes = require('../routes/ticketRoutes.js');
 
 // get all the deparments 
-router.get('/', async (req, res) => {   
+router.get('/', async (req, res) => {
     const departments = await Department.find();
     if (!departments) {
         return res.status(404).json({ msg: "Departments not found" });
@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
 });
 
 // get the tickets of the department
-router.use('/ticket', ticketRoutes);
+router.use('/ticket',ticketRoutes);
 
 // create a new department
 router.post('/', async (req, res) => {

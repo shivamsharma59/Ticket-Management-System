@@ -23,7 +23,7 @@ function App() {
                     <Route path='/departments' element={<DepartmentList />} />
                     <Route path='/dashboard' />
                     <Route path='/latestTickets' />
-                    <Route path="/department/:departmentId/ticket" element={<DepartmentTicketList />} />
+                    <Route path="/department/:ticket/:departmentId" element={<DepartmentTicketList />} />
                     <Route path="/department/:departmentId/ticket/:ticketId" element={<TicketDetail />} />
                   </Route>
                   <Route path='/login' element={<LoginPage />} />
