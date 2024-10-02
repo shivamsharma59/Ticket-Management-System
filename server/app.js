@@ -36,18 +36,19 @@ io.on('connection', (socket) => {
 
     socket.on('join_ticket', ({ ticketId }) => {
         socket.join(ticketId);
+        console.log(`Socket ${socket.id} joined ticket: ${ticketId}`);
     });
 
     socket.on('send_message', ({ ticketId, sender, content }) => {
         const newMessage = {
             ticketId,
             sender,
-            content,  // Ensure this matches your client
-            timeStamp: new Date().getTime(), // Use a timestamp if needed
+            content,
+            timeStamp: new Date().getTime(),
         };
-        io.to(ticketId).broadcast.emit('recieve_message', newMessage);
-    });    
-    
+        socket.to(ticketId).emit('recieve_message', newMessage); // Changed to prevent sender from receiving their own message
+    });
+
     socket.on('disconnect', () => {
         console.log('user disconnected');
     });

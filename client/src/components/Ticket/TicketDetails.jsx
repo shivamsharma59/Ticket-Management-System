@@ -2,22 +2,22 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { TicketContext } from '../../contexts/Ticket.context';
 import { io } from 'socket.io-client';
+import './TicketDetails.css';
+
 const socket = io('http://localhost:3000'); // Adjust the URL as needed
 
 const TicketDetail = () => {
-    const { ticketId } = useParams(); // Get ticketId from the URL
+    const { ticketId } = useParams();
     const { tickets } = useContext(TicketContext);
     const [messages, setMessages] = useState([]);
     const [messageInput, setMessageInput] = useState('');
 
-    const ticket = tickets.find(ticket => ticket._id === ticketId); // Fetch the specific ticket
-    console.log("The Current Ticket is : ", ticket);
+    const ticket = tickets.find(ticket => ticket._id === ticketId);
 
     useEffect(() => {
         socket.emit('join_ticket', { ticketId });
 
         const handleReceiveMessage = (newMessage) => {
-            // Check for duplicates before adding the message
             const isDuplicate = messages.some(msg => msg.timeStamp === newMessage.timeStamp);
             if (!isDuplicate) {
                 setMessages((prevMessages) => [...prevMessages, newMessage]);
@@ -29,24 +29,27 @@ const TicketDetail = () => {
         return () => {
             socket.off('recieve_message', handleReceiveMessage);
         };
-    }, [ticketId]); // Adding messages as dependency
+    }, [ticketId]);
 
     const sendMessage = () => {
-        if (!messageInput.trim()) return; // Prevent sending empty messages
+        if (!messageInput.trim()) return;
 
         const newMessage = {
             ticketId,
             sender: 'User', // Replace with the actual user data
             content: messageInput,
-            timeStamp: new Date().getTime(), // Use a unique timestamp
+            timeStamp: new Date().getTime(),
         };
 
-        // Emit the message to the server
         socket.emit('send_message', newMessage);
-
-        // Add the message to state immediately to update UI
         setMessages((prevMessages) => [...prevMessages, newMessage]);
         setMessageInput('');
+    };
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            sendMessage();
+        }
     };
 
     return (
@@ -64,6 +67,7 @@ const TicketDetail = () => {
                 type='text'
                 value={messageInput}
                 onChange={(e) => setMessageInput(e.target.value)}
+                onKeyDown={handleKeyDown} // Add this line
                 placeholder='Type your message...'
             />
             <button onClick={sendMessage}>Send</button>
