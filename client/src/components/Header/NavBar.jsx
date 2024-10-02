@@ -1,12 +1,32 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import PersonIcon from '@mui/icons-material/Person';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../contexts/UserContext';
+import DropDown from '../DropDown/DropDown';
+import { jwtDecode } from 'jwt-decode';
+import Cookies from 'js-cookie';
 import './NavBar.css';
 
 
 function NavBar() {
-    const { username, email, loggedIn } = useContext(UserContext)
+    const { username, email, setUsername, setEmail, loggedIn, setLoggedIn } = useContext(UserContext)
+    const [isOpen, setIsOpen] = useState(false);
+
+    useEffect(() => {
+        const token = Cookies.get('token');
+        if (token) {
+            const decode = jwtDecode(token);
+            const { username, email } = decode;
+            setUsername(username);
+            setEmail(email);
+            setLoggedIn(true);
+        }
+    }, [loggedIn]);
+
+    const toggleDropDown = () => {
+        setIsOpen(!isOpen);
+    }
+
     return (
         <div>
             <div className="navbar">
@@ -24,8 +44,14 @@ function NavBar() {
                             <Link to='/Login' className='nav-links'>Login/Signup</Link>
                         </li>
                     ) : (
-                        <li className='list-items'> <PersonIcon /> {username}</li>
+                        <li
+                            className='list-items'
+                            onMouseEnter={toggleDropDown}
+                            onMouseLeave={toggleDropDown}
+                            onClick={toggleDropDown}
+                        > <PersonIcon /> {username}</li>
                     )}
+                    {isOpen && <DropDown />}
                 </ul>
             </div>
         </div>

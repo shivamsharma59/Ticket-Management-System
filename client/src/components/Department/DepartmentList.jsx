@@ -31,7 +31,10 @@ function DepartmentList() {
                 <ul className='department-list'>
                     {departments.map(department => (
                         <li className='department' key={department._id}>
-                            <Link to={`/department/${department._id}/ticket`} onClick={() => {setDepartmentId(department._id)}}>{department.departmentName}</Link>
+                            <Link
+                                to={`/department/${department._id}/ticket`}
+                                onClick={() => { setDepartmentId(department._id) }}
+                            > {department.departmentName} </Link>
                         </li>
                     ))}
                 </ul>

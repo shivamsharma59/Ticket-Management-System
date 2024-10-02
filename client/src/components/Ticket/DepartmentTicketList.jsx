@@ -22,6 +22,7 @@ function DepartmentTicketList() {
         getTickets();
     }, []);
 
+
     const toggleFormVisibility = () => {
         setIsFormVisible(!isFormVisible);
     };
@@ -33,7 +34,7 @@ function DepartmentTicketList() {
                 <ul className='ticket-list'>
                     {tickets.map(ticket => (
                         <li className='department' key={ticket._id}>
-                            <Link to={`/department/${departmentId}/ticket/${ticket.id}`}>{ticket.title}</Link>
+                            <Link to={`/department/${departmentId}/ticket/${ticket._id}`}>{ticket.title}</Link>
                         </li>
                     ))}
                 </ul>

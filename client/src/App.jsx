@@ -8,6 +8,7 @@ import { DepartmentProvider } from './contexts/Department.context';
 import { TicketContextProvider } from './contexts/Ticket.context';
 import VerifyOtpPage from './pages/verifyOtp/verifyOtp.page';
 import { UserContextProvider } from './contexts/UserContext';
+import TicketDetail from './components/Ticket/TicketDetails';
 
 function App() {
   return (
@@ -23,10 +24,12 @@ function App() {
                     <Route path='/dashboard' />
                     <Route path='/latestTickets' />
                     <Route path="/department/:departmentId/ticket" element={<DepartmentTicketList />} />
+                    <Route path="/department/:departmentId/ticket/:ticketId" element={<TicketDetail />} />
                   </Route>
                   <Route path='/login' element={<LoginPage />} />
                   <Route path='/signup' element={<SignupPage />} />
                   <Route path='/verify-otp' element={<VerifyOtpPage />} />
+                  <Route path='*' element={<HomePage />} />
                 </Routes >
               </main>
             </Router>
