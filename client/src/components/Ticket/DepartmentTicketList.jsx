@@ -6,13 +6,14 @@ import TicketForm from './TicketForm';
 import './DepartmentTicketList.css';
 
 function DepartmentTicketList() {
-    const { tickets, fetchTickets, addTicket } = useContext(TicketContext);
+    const { tickets, fetchTickets } = useContext(TicketContext);
     const { departmentId } = useContext(departmentContext);
     const [isFormVisible, setIsFormVisible] = useState(false);
 
     useEffect(() => {
         const getTickets = async () => {
             try {
+                console.log("Department Id : ", departmentId);
                 await fetchTickets(departmentId);
             } catch (error) {
                 console.error('Failed to fetch Tickets:', error);
@@ -20,8 +21,7 @@ function DepartmentTicketList() {
         };
 
         getTickets();
-    }, []);
-
+    }, [departmentId]);
 
     const toggleFormVisibility = () => {
         setIsFormVisible(!isFormVisible);
@@ -34,11 +34,19 @@ function DepartmentTicketList() {
                 <ul className='ticket-list'>
                     {tickets.map(ticket => (
                         <li className='department' key={ticket._id}>
-                            <Link to={`/department/${departmentId}/ticket/${ticket._id}`}>{ticket.title}</Link>
+                            <div className='ticket-info'>
+                                <div className='ticket-details'>
+                                    <Link to={`/department/${departmentId}/ticket/${ticket._id}`} className='ticket-title'>
+                                        {ticket.title}
+                                    </Link>
+                                    <p className='description'>{ticket.description}</p>
+                                </div>
+                                <p className={`status ${ticket.status.toLowerCase()}`}>{ticket.status}</p>
+                            </div>
                         </li>
                     ))}
                 </ul>
-            </div >
+            </div>
             <button onClick={toggleFormVisibility}>
                 {isFormVisible ? 'Close Form' : 'Raise Ticket'}
             </button>

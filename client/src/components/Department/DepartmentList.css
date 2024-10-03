@@ -33,6 +33,40 @@ h2 {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
+.department-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.department-details {
+    flex: 1; /* Allows it to grow and take space */
+}
+
+.department-title {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.description {
+    margin: 5px 0;
+    color: var(--text-color);
+    font-size: 16px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limit to 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.total-members {
+    font-weight: bold;
+    color: var(--status-color);
+    margin-left: 10px; /* Space between description and total members */
+}
+
 button {
     font-size: 16px;
     padding: 10px 20px;
@@ -64,6 +98,7 @@ button:active {
     .department {
         font-size: 16px;
     }
+
     button {
         width: 100%;
     }

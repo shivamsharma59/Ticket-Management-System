@@ -20,6 +20,11 @@ const ticketSchema = new mongoose.Schema({
     messages : {
         type : mongoose.Schema.Types.ObjectId,
         ref : 'Message'
+    },
+    status : {
+        type : String,
+        enum : ['pending', 'resolved'],
+        default : 'pending'
     }
 }, { timestamps: true });
 

@@ -15,7 +15,7 @@ const TicketContextProvider = ({ children }) => {
     const addTicket = async ({ departmentId, title, description }) => {
 
         const msg = await createTicket({ departmentId, title, description });
-        await fetchTickets();
+        await fetchTickets(departmentId);
         return msg;
     }
 

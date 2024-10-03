@@ -11,6 +11,7 @@ h2 {
     margin-bottom: 20px;
     font-size: 24px;
     text-align: center;
+    color: var(--primary-color);
 }
 
 .ticket-list {
@@ -26,21 +27,54 @@ h2 {
     border-radius: 4px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
+    background-color: #f9f9f9;
 }
 
 .ticket-list .department:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.ticket-list .department a {
+.ticket-list .department .ticket-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.ticket-list .department .ticket-details {
+    flex: 1;
+}
+
+.ticket-list .department .ticket-title {
     text-decoration: none;
     color: var(--text-color);
     font-weight: bold;
+    font-size: 18px;
 }
 
-.ticket-list .department a:hover {
-    color: var(--primary-color);
+.ticket-list .department .description {
+    margin: 5px 0;
+    color: var(--text-color);
+    font-size: 16px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limit to 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ticket-list .department .status {
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+/* Status Color Styles */
+.ticket-list .department .status.pending {
+    color: orange; /* Color for pending status */
+}
+
+.ticket-list .department .status.resolved {
+    color: green; /* Color for resolved status */
 }
 
 button {
@@ -53,12 +87,11 @@ button {
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
     display: block;
-    margin: 20px auto; /* Center the button */
+    margin: 20px auto;
 }
 
 button:hover {
     background-color: var(--accent-color);
-    color: #fff;
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
